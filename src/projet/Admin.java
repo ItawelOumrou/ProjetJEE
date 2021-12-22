@@ -12,6 +12,14 @@ class Admin {
 			this.pass="admin";
 		}
 		
+		
+		public Admin(String login, String pass) {
+			super();
+			this.login = login;
+			this.pass = pass;
+		}
+
+
 		public String getLogin() {
 			return login;
 		}
