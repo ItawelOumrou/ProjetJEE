@@ -43,6 +43,34 @@ public class AdminController {
 	public String supprimerClient(@PathParam("id") String id){
 		return ServiceDirecteur.supprimerDirecteur(id);
 	}
+	
+	//Pour le caissier
+	
+	@POST
+	@Path("ajouterCaissier")
+	public String ajouterCaissier(Caissier c){
+		return ServiceDirecteur.ajouterCaissier(c);
+	}
+	
+	@GET
+	@Path("afficherCaissier")
+	public List<Caissier> afficherCaissier(){
+		return ServiceDirecteur.afficherCaissier();
+	}
+	
+	@GET
+	@Path("afficherCaissierUnique/{id}")
+	public Caissier afficherCaissierUnique(@PathParam("id") String id){
+		return ServiceDirecteur.afficherCaissierUnique(id);
+	}
+	
+
+	
+	@DELETE
+	@Path("supprimerCaissier/{id}")
+	public String supprimerCaissier(@PathParam("id") String id){
+		return ServiceDirecteur.supprimerCaissier(id);
+	}
 
 }
 

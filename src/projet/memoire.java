@@ -12,4 +12,11 @@ class memoire {
 		return directeurs;
 	}
 	
+	//Pour le  caissier
+	private static Map<String, Caissier> caissiers = new HashMap<>();
+	public static Map<String, Caissier> getCassiers(){
+		caissiers.put("1",new Caissier("AH","IT","1","0012"));
+		return caissiers;
+	}
+	
 }
