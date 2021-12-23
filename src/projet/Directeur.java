@@ -3,13 +3,13 @@ package projet;
 public class Directeur {
 	private String nom;
 	private String prenom;
-	private String identifiant;
+	private long identifiant;
 	private String motDePasse;
 	
 	
 	public Directeur() {}
 	
-	public Directeur(String nom, String prenom, String identifiant, String motDePasse) {
+	public Directeur(String nom, String prenom, long identifiant, String motDePasse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -33,11 +33,11 @@ public class Directeur {
 		this.prenom = prenom;
 	}
 
-	public String getIdentifiant() {
+	public long getIdentifiant() {
 		return identifiant;
 	}
 
-	public void setIdentifiant(String identifiant) {
+	public void setIdentifiant(long identifiant) {
 		this.identifiant = identifiant;
 	}
 

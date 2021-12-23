@@ -5,27 +5,40 @@ import java.util.List;
 import java.util.Map;
 
 public class ServiceDirecteur {
-public static Map<String, Directeur> directeurs = memoire.getDirecteurs();
 	
-	public static String ajouterDirecteur(Directeur c){
+public static Map<Long, Directeur> directeurs = memoire.getDirecteurs();
+	
+	public  Directeur ajouterDirecteur(Directeur c){
+		c.setIdentifiant(directeurs.size()+1);
 		directeurs.put(c.getIdentifiant(), c);
-		return c.getPrenom()+" a ete ajouter avec succes";
+		return c;
+		
 	}
 	
-	public static List<Directeur> afficherDirecteur() {
+	public    List<Directeur> afficherDirecteur() {
 		return new ArrayList<Directeur>(directeurs.values());
 	}
 	
-	public static Directeur afficherDirecteurUnique(String id){
+	public  Directeur  afficherDirecteurUnique(Long id){
 		Directeur c = directeurs.get(id);
 		return c; 
 	}
 	
 	
-	public static String supprimerDirecteur(String id){
-		Directeur c = directeurs.remove(id);
-		return c.getIdentifiant()+" est bien supprimer";
+	public  void supprimerDirecteur(Long id){
+		  directeurs.remove(id);
+		  
+		
 	}
+	
+	public  Directeur modifierDirecteur(Directeur c){
+		if(c.getIdentifiant() <= 0)
+			return null;
+		
+		directeurs.put(c.getIdentifiant(), c);
+		return c;
+	}
+	
 	
 	//Pour le caissier
 public static Map<String, Caissier> caissiers = memoire.getCassiers();

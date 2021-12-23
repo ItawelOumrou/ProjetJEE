@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 @Produces("application/json")
 public class Connexion {
 	Admin admin = new Admin();
+	 static ServiceDirecteur ServiceDirecteur = new ServiceDirecteur();
 
 	@GET 
 	@Produces(MediaType.TEXT_HTML)
@@ -18,17 +19,18 @@ public class Connexion {
 		
 		
 		
-		if (pass.equals(admin.getPass()) && login.equals(admin.getLogin())) {
+		if(!memoire.getAdmin().containsKey(login))
+			return "("+login+"): Cet identifiant n'existe pas.";
+		
+		
+		if (pass.equals(memoire.getAdmin().get(login))) {
+			memoire.connecter(login);
 			
 			return "Bienvenue "+login+", connexion avec succes";
 		} else {
 			return "Erreur de connexion. Mot de passe incorect";
 		}
-		
 	}
-	
-	
-		
 			
 		
 	

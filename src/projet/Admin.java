@@ -7,10 +7,7 @@ class Admin {
 		
 		
 		
-		public Admin(){
-			this.login="admin";
-			this.pass="admin";
-		}
+		public Admin(){}
 		
 		
 		public Admin(String login, String pass) {
