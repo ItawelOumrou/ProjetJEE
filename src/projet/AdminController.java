@@ -120,5 +120,39 @@ public class AdminController {
 	public String supprimerMagasin(@PathParam("id") Long id){
 		return ServiceDirecteur.supprimerMagasin(id);
 	}
+	
+	//pour le produit
+	
+		@POST
+		@Path("ajouterProduit")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Produit ajouterProduit(Produit c){
+			return ServiceDirecteur.ajouterProduit(c);
+		}
+		
+		@GET
+		@Path("stock")
+		public List<Produit> afficherProduit(){
+			return ServiceDirecteur.afficherProduit();
+		}
+		
+		@GET
+		@Path("afficherProduitUnique/{id}")
+		public Produit afficherProduitUnique(@PathParam("id") Long id){
+			return ServiceDirecteur.afficherProduitUnique(id);
+		}
+		
+		@PUT
+		@Path("modifierProduit/{id}")
+		public   Produit modifierProduit(@PathParam("id") Long id,Produit dir){
+			dir.setIdProduit(id);
+			return ServiceDirecteur.modifierProduit(dir);
+		}
+		
+		@DELETE
+		@Path("supprimerProduit/{id}")
+		public String supprimerProduit(@PathParam("id") Long id){
+			return ServiceDirecteur.supprimerProduit(id);
+		}
 }
 

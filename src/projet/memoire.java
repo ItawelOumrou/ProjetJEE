@@ -25,6 +25,13 @@ class memoire {
 			//caissiers.put((Long) 1,new Caissier("AH","IT",1,"0012"));
 			return magasins;
 		}
+		
+		//Pour le  produit
+				private static Map<Long, Produit> produits = new HashMap<>();
+				public static Map<Long, Produit> getProduits(){
+					//caissiers.put((Long) 1,new Caissier("AH","IT",1,"0012"));
+					return produits;
+				}
 	
 private static Map<String, String> admins = new HashMap<>();
 	
