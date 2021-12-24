@@ -41,26 +41,35 @@ public static Map<Long, Directeur> directeurs = memoire.getDirecteurs();
 	
 	
 	//Pour le caissier
-public static Map<String, Caissier> caissiers = memoire.getCassiers();
+public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 	
-	public static String ajouterCaissier(Caissier d){
+	public Caissier ajouterCaissier(Caissier d){
+		d.setId((long) (caissiers.size()+1));
 		caissiers.put(d.getId(), d);
-		return d.getPrenom()+" a ete ajouter avec succes";
+		return d;
 	}
 	
-	public static List<Caissier> afficherCaissier() {
+	public List<Caissier> afficherCaissier() {
 		return new ArrayList<Caissier>(caissiers.values());
 	}
 	
-	public static Caissier afficherCaissierUnique(String id){
+	public Caissier afficherCaissierUnique(Long id){
 		Caissier c = caissiers.get(id);
 		return c; 
 	}
 	
 	
-	public static String supprimerCaissier(String id){
+	public String supprimerCaissier(Long id){
 		Caissier d = caissiers.remove(id);
 		return d.getId()+" est bien supprimer";
+	}
+	
+	public  Caissier modifierCaissier(Caissier c){
+		if(c.getId() <= 0)
+			return null;
+		
+		caissiers.put(c.getId(), c);
+		return c;
 	}
 	
 	

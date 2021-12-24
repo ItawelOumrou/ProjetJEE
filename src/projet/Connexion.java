@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 @Produces("application/json")
 public class Connexion {
 	Admin admin = new Admin();
-	 static ServiceDirecteur ServiceDirecteur = new ServiceDirecteur();
 
 	@GET 
 	@Produces(MediaType.TEXT_HTML)

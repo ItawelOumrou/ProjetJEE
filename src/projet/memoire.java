@@ -13,16 +13,16 @@ class memoire {
 	}
 	
 	//Pour le  caissier
-	private static Map<String, Caissier> caissiers = new HashMap<>();
-	public static Map<String, Caissier> getCassiers(){
-		caissiers.put("1",new Caissier("AH","IT","1","0012"));
+	private static Map<Long, Caissier> caissiers = new HashMap<>();
+	public static Map<Long, Caissier> getCassiers(){
+		//caissiers.put((Long) 1,new Caissier("AH","IT",1,"0012"));
 		return caissiers;
 	}
 	
 private static Map<String, String> admins = new HashMap<>();
 	
 	public static Map<String,String> getAdmin(){
-		admins.put("admin", "adminy");
+		admins.put("admin", "admin");
 		return admins;
 	}
 private static Map<String, String> connectionState = new HashMap<>();

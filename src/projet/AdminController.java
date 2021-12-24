@@ -58,7 +58,7 @@ public class AdminController {
 	
 	@POST
 	@Path("ajouterCaissier")
-	public String ajouterCaissier(Caissier c){
+	public Caissier ajouterCaissier(Caissier c){
 		return ServiceDirecteur.ajouterCaissier(c);
 	}
 	
@@ -70,15 +70,20 @@ public class AdminController {
 	
 	@GET
 	@Path("afficherCaissierUnique/{id}")
-	public Caissier afficherCaissierUnique(@PathParam("id") String id){
+	public Caissier afficherCaissierUnique(@PathParam("id") Long id){
 		return ServiceDirecteur.afficherCaissierUnique(id);
 	}
 	
-
+	@PUT
+	@Path("modifierCaissier/{id}")
+	public   Caissier modifierCaissier(@PathParam("id") Long id,Caissier dir){
+		dir.setId(id);
+		return ServiceDirecteur.modifierCaissier(dir);
+	}
 	
 	@DELETE
 	@Path("supprimerCaissier/{id}")
-	public String supprimerCaissier(@PathParam("id") String id){
+	public String supprimerCaissier(@PathParam("id") Long id){
 		return ServiceDirecteur.supprimerCaissier(id);
 	}
 

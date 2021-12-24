@@ -3,12 +3,12 @@ package projet;
 public class Caissier {
 	private String nom;
 	private String prenom;
-	private String id;
+	private Long id;
 	private String motDePasse;
 	
 	public Caissier() {}
 	
-	public Caissier(String nom, String prenom, String id, String motDePasse) {
+	public Caissier(String nom, String prenom, Long id, String motDePasse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -32,11 +32,11 @@ public class Caissier {
 		this.prenom = prenom;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -47,6 +47,10 @@ public class Caissier {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+
+
+
+	
 	
 	
 	
