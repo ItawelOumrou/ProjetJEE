@@ -87,5 +87,38 @@ public class AdminController {
 		return ServiceDirecteur.supprimerCaissier(id);
 	}
 
+	//pour le magasin
+	
+	@POST
+	@Path("ajouterMagasin")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Magasin ajouterMagasin(Magasin c){
+		return ServiceDirecteur.ajouterMagasin(c);
+	}
+	
+	@GET
+	@Path("afficherMagasin")
+	public List<Magasin> afficherMagasin(){
+		return ServiceDirecteur.afficherMagasin();
+	}
+	
+	@GET
+	@Path("afficherMagasinUnique/{id}")
+	public Magasin afficherMagasinUnique(@PathParam("id") Long id){
+		return ServiceDirecteur.afficherMagisinUnique(id);
+	}
+	
+	@PUT
+	@Path("modifierMagasin/{id}")
+	public   Magasin modifierMagasin(@PathParam("id") Long id,Magasin dir){
+		dir.setId(id);
+		return ServiceDirecteur.modifierMagasin(dir);
+	}
+	
+	@DELETE
+	@Path("supprimerMagasin/{id}")
+	public String supprimerMagasin(@PathParam("id") Long id){
+		return ServiceDirecteur.supprimerMagasin(id);
+	}
 }
 

@@ -72,5 +72,36 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 		return c;
 	}
 	
+	//pour le magasin
+	public static Map<Long, Magasin> magasins = memoire.getMagasins();
 	
+	public  Magasin ajouterMagasin(Magasin c){
+		c.setId((long) (magasins.size()+1));
+		magasins.put(c.getId(), c);
+		return c;
+		
+	}
+	
+	public List<Magasin> afficherMagasin() {
+		return new ArrayList<Magasin>(magasins.values());
+	}
+	
+	public Magasin afficherMagisinUnique(Long id){
+		Magasin c = magasins.get(id);
+		return c; 
+	}
+	
+	
+	public String supprimerMagasin(Long id){
+		Magasin d = magasins.remove(id);
+		return d.getId()+" est bien supprimer";
+	}
+	
+	public  Magasin modifierMagasin(Magasin c){
+		if(c.getId() <= 0)
+			return null;
+		
+		magasins.put(c.getId(), c);
+		return c;
+	}
 }
