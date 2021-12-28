@@ -93,7 +93,17 @@ public class AdminController {
 	@Path("ajouterMagasin")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Magasin ajouterMagasin(Magasin c){
-		return ServiceDirecteur.ajouterMagasin(c);
+		if(memoire.getDirecteurs().containsKey(c.getIdD())==true)
+			return ServiceDirecteur.ajouterMagasin(c);
+		return null;
+	}
+	
+	@POST
+	@Path("ajouterPAM/{nom}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Magasin ajouterPAM(@PathParam("nom") String nom,Magasin c){
+		c.setNom(nom);
+		return ServiceDirecteur.ajouterPAM(c);
 	}
 	
 	@GET
@@ -103,15 +113,15 @@ public class AdminController {
 	}
 	
 	@GET
-	@Path("afficherMagasinUnique/{id}")
-	public Magasin afficherMagasinUnique(@PathParam("id") Long id){
-		return ServiceDirecteur.afficherMagisinUnique(id);
+	@Path("afficherMagasinUnique/{nom}")
+	public Magasin afficherMagasinUnique(@PathParam("nom") String nom){
+		return ServiceDirecteur.afficherMagisinUnique(nom);
 	}
 	
 	@PUT
-	@Path("modifierMagasin/{id}")
-	public   Magasin modifierMagasin(@PathParam("id") Long id,Magasin dir){
-		dir.setId(id);
+	@Path("modifierMagasin/{nom}")
+	public   Magasin modifierMagasin(@PathParam("nom") String nom,Magasin dir){
+		dir.setNom(nom);
 		return ServiceDirecteur.modifierMagasin(dir);
 	}
 	
@@ -154,5 +164,7 @@ public class AdminController {
 		public String supprimerProduit(@PathParam("id") Long id){
 			return ServiceDirecteur.supprimerProduit(id);
 		}
+		
+		
 }
 

@@ -2,26 +2,45 @@ package projet;
 
 public class Magasin {
 
-	private Long id;
-	private String nom;
-	private String adress;
 	
+	private String nom;
+	private Produit produit = new Produit();
+	private Long idD;
+	private Long idC;
+	
+	public Magasin(String nom, Long idD, Long idC, Produit pr) {
+		super();
+		this.nom = nom;
+		this.produit = pr;
+		this.idD = idD;
+		this.idC = idC;
+	}
+
+
+
+
+
 	public Magasin() {}
 
-	public Magasin(Long id, String nom, String adress) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.adress = adress;
+
+
+
+
+	public Produit getPr() {
+		return produit;
 	}
 
-	public Long getId() {
-		return id;
+
+
+
+
+	public void setPr(Produit pr) {
+		this.produit = pr;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+
+
+
 
 	public String getNom() {
 		return nom;
@@ -31,13 +50,38 @@ public class Magasin {
 		this.nom = nom;
 	}
 
-	public String getAdress() {
-		return adress;
+
+
+
+
+	public Long getIdD() {
+		return idD;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+
+
+
+
+	public void setIdD(Long idD) {
+		this.idD = idD;
 	}
 
+
+
+
+
+	public Long getIdC() {
+		return idC;
+	}
+
+
+
+
+
+	public void setIdC(Long idC) {
+		this.idC = idC;
+	}
+
+	
 	
 }

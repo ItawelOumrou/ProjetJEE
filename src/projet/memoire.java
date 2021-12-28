@@ -7,7 +7,7 @@ class memoire {
 	
 	private static Map<Long, Directeur> directeurs = new HashMap<>();
 	public static Map<Long, Directeur> getDirecteurs(){
-		//directeurs.put((long) 1,new Directeur("Ahmed Jiddou","It",1,"1234"));
+		directeurs.put((long) 1,new Directeur("Ahmed Jiddou","It",1,"1234"));
 		
 		return directeurs;
 	}
@@ -20,24 +20,25 @@ class memoire {
 	}
 	
 	//Pour le  magasin
-		private static Map<Long, Magasin> magasins = new HashMap<>();
-		public static Map<Long, Magasin> getMagasins(){
-			//caissiers.put((Long) 1,new Caissier("AH","IT",1,"0012"));
+		private static Map<String, Magasin> magasins = new HashMap<>();
+		public static Map<String, Magasin> getMagasins(){
+			//magasins.put("Epicerie", new Magasin("Epicerie",1,null,(1,"120ouw","Biscuit")));
 			return magasins;
 		}
 		
 		//Pour le  produit
 				private static Map<Long, Produit> produits = new HashMap<>();
 				public static Map<Long, Produit> getProduits(){
-					//caissiers.put((Long) 1,new Caissier("AH","IT",1,"0012"));
+					
 					return produits;
 				}
 	
-private static Map<String, String> admins = new HashMap<>();
+private static Map<String , Admin> admins = new HashMap<>();
 	
-	public static Map<String,String> getAdmin(){
-		admins.put("admin", "admin");
+	public static Map<String ,Admin> getAdmin(){
+		admins.put("admin",new Admin("admin","admin"));
 		return admins;
+		
 	}
 private static Map<String, String> connectionState = new HashMap<>();
 	
@@ -46,7 +47,7 @@ private static Map<String, String> connectionState = new HashMap<>();
 	}
 	
 	public static void connecter(String login){
-		connectionState.put(login, "admin");
+		connectionState.put(login,"admin");
 	}
 	
 }

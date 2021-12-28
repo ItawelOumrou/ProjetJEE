@@ -27,8 +27,11 @@ class Admin {
 		public void setLogin(String login) {
 			this.login = login;
 		}
-		
+
+
 		public void setPass(String pass) {
 			this.pass = pass;
 		}
+		
+
 }

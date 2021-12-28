@@ -106,11 +106,11 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 	}
 	
 	//pour le magasin
-		public static Map<Long, Magasin> magasins = memoire.getMagasins();
+		public static Map<String, Magasin> magasins = memoire.getMagasins();
 		
 		public  Magasin ajouterMagasin(Magasin c){
-			c.setId((long) (magasins.size()+1));
-			magasins.put(c.getId(), c);
+			
+			magasins.put(c.getNom(), c);
 			return c;
 			
 		}
@@ -119,22 +119,39 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 			return new ArrayList<Magasin>(magasins.values());
 		}
 		
-		public Magasin afficherMagisinUnique(Long id){
-			Magasin c = magasins.get(id);
+		public Magasin afficherMagisinUnique(String nom){
+			Magasin c = magasins.get(nom);
 			return c; 
 		}
 		
 		
 		public String supprimerMagasin(Long id){
 			Magasin d = magasins.remove(id);
-			return d.getId()+" est bien supprimer";
+			return d.getNom()+" est bien supprimer";
 		}
 		
 		public  Magasin modifierMagasin(Magasin c){
-			if(c.getId() <= 0)
-				return null;
 			
-			magasins.put(c.getId(), c);
+			magasins.put(c.getNom(), c);
 			return c;
 		}
+		
+		public  Magasin ajouterPAM(Magasin c){
+			magasins.put(c.getNom(), c);
+			return c;
+			
+		}
+		
+		//Pour Admin
+		public static Map<String, Admin> admins = memoire.getAdmin();
+		
+		public  Admin modifierMdp(Admin c){
+			
+			admins.put(c.getLogin(), c);
+			return c;
+		}
+		public List<Admin> afficher() {
+			return new ArrayList<Admin>(admins.values());
+		}
+		
 }
