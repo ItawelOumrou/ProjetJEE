@@ -20,23 +20,25 @@ class memoire {
 	}
 	
 	//Pour le  magasin
-		private static Map<String, Magasin> magasins = new HashMap<>();
-		public static Map<String, Magasin> getMagasins(){
-			//magasins.put("Epicerie", new Magasin("Epicerie",1,null,(1,"120ouw","Biscuit")));
+		private static Map<Long, Magasin> magasins = new HashMap<>();
+		public static Map<Long, Magasin> getMagasins(){
+			magasins.put((long) 1, new Magasin((long) 1,"Epicerie",(long) 1,null));
 			return magasins;
 		}
 		
 		//Pour le  produit
 				private static Map<Long, Produit> produits = new HashMap<>();
 				public static Map<Long, Produit> getProduits(){
-					
+					produits.put((long) 1, new Produit((long) 1,"Biscuit","123oiu4"));
 					return produits;
 				}
+				
+				
+	//pour admin
+private static Map<String , String> admins = new HashMap<>();
 	
-private static Map<String , Admin> admins = new HashMap<>();
-	
-	public static Map<String ,Admin> getAdmin(){
-		admins.put("admin",new Admin("admin","admin"));
+	public static Map<String ,String> getAdmin(){
+		admins.put("admin", "admin");
 		return admins;
 		
 	}
@@ -49,5 +51,18 @@ private static Map<String, String> connectionState = new HashMap<>();
 	public static void connecter(String login){
 		connectionState.put(login,"admin");
 	}
+	public static boolean isConnected( String login ){
+		if(connectionState.get(login) == null) return false;
+		if(connectionState.get(login).equals("admin"))
+			return true;
+		else
+			return false;
+	}
 	
+	//pour Stock
+	private static Map<Long, Stock> stock = new HashMap<>();
+	public static Map<Long, Stock> getStocks(){
+		
+		return stock;
+	}
 }

@@ -98,13 +98,6 @@ public class AdminController {
 		return null;
 	}
 	
-	@POST
-	@Path("ajouterPAM/{nom}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Magasin ajouterPAM(@PathParam("nom") String nom,Magasin c){
-		c.setNom(nom);
-		return ServiceDirecteur.ajouterPAM(c);
-	}
 	
 	@GET
 	@Path("afficherMagasin")
@@ -119,9 +112,9 @@ public class AdminController {
 	}
 	
 	@PUT
-	@Path("modifierMagasin/{nom}")
-	public   Magasin modifierMagasin(@PathParam("nom") String nom,Magasin dir){
-		dir.setNom(nom);
+	@Path("modifierMagasin/{id}")
+	public   Magasin modifierMagasin(@PathParam("id") Long id,Magasin dir){
+		dir.setId(id);
 		return ServiceDirecteur.modifierMagasin(dir);
 	}
 	
@@ -141,7 +134,7 @@ public class AdminController {
 		}
 		
 		@GET
-		@Path("stock")
+		@Path("listProduit")
 		public List<Produit> afficherProduit(){
 			return ServiceDirecteur.afficherProduit();
 		}
@@ -159,12 +152,49 @@ public class AdminController {
 			return ServiceDirecteur.modifierProduit(dir);
 		}
 		
+		
 		@DELETE
 		@Path("supprimerProduit/{id}")
 		public String supprimerProduit(@PathParam("id") Long id){
 			return ServiceDirecteur.supprimerProduit(id);
 		}
 		
+		//pour stock
+		@POST
+		@Path("ajouterStock")
+		@Produces(MediaType.APPLICATION_JSON)
+		public String ajouterStock(Stock c){
+			if(memoire.getMagasins().containsKey(c.getIdM())==true && memoire.getProduits().containsKey(c.getIdP())==true){
+				ServiceDirecteur.ajouterStock(c);
+				return "ajouter avec succes";
+			}
+			return "erreur";
+		}
 		
+		@GET
+		@Path("afficherStock")
+		@Produces(MediaType.APPLICATION_JSON)
+		public  List<Stock> afficherStock(){
+			return ServiceDirecteur.afficherStock();
+		}
+		
+		@GET
+		@Path("afficherStockUnique/{id}")
+		public Stock afficherStockUnique(@PathParam("id") Long id){
+			return ServiceDirecteur.afficherStockUnique(id);
+		}
+		
+		@PUT
+		@Path("modifierStock/{id}")
+		public   Stock modifierStock(@PathParam("id") Long id,Stock dir){
+			dir.setIdM(id);
+			return ServiceDirecteur.modifierStock(dir);
+		}
+		
+		@DELETE
+		@Path("supprimerStock/{id}")
+		public String supprimerStock(@PathParam("id") Long id){
+			return ServiceDirecteur.supprimerStock(id);
+		}
 }
 

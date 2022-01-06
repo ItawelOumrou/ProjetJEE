@@ -2,45 +2,28 @@ package projet;
 
 public class Magasin {
 
-	
+	private Long id;
 	private String nom;
-	private Produit produit = new Produit();
 	private Long idD;
 	private Long idC;
 	
-	public Magasin(String nom, Long idD, Long idC, Produit pr) {
-		super();
+	public Magasin(Long id,String nom, Long idD, Long idC) {
+		this.id=id;
 		this.nom = nom;
-		this.produit = pr;
 		this.idD = idD;
 		this.idC = idC;
 	}
-
-
-
-
-
+	
 	public Magasin() {}
 
 
-
-
-
-	public Produit getPr() {
-		return produit;
+	public Long getId() {
+		return id;
 	}
 
-
-
-
-
-	public void setPr(Produit pr) {
-		this.produit = pr;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-
-
-
 
 	public String getNom() {
 		return nom;

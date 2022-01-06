@@ -11,7 +11,6 @@ class Admin {
 		
 		
 		public Admin(String login, String pass) {
-			super();
 			this.login = login;
 			this.pass = pass;
 		}

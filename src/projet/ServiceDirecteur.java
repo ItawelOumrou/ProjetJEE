@@ -106,11 +106,11 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 	}
 	
 	//pour le magasin
-		public static Map<String, Magasin> magasins = memoire.getMagasins();
+		public static Map<Long, Magasin> magasins = memoire.getMagasins();
 		
 		public  Magasin ajouterMagasin(Magasin c){
-			
-			magasins.put(c.getNom(), c);
+			c.setId((long) (magasins.size()+1));
+			magasins.put(c.getId(), c);
 			return c;
 			
 		}
@@ -132,26 +132,40 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 		
 		public  Magasin modifierMagasin(Magasin c){
 			
-			magasins.put(c.getNom(), c);
+			magasins.put(c.getId(), c);
 			return c;
 		}
 		
-		public  Magasin ajouterPAM(Magasin c){
-			magasins.put(c.getNom(), c);
+		
+		//pour stock
+public static Map<Long, Stock> stock = memoire.getStocks();
+		
+		public  Stock ajouterStock(Stock c){
+			
+			stock.put(c.getIdM(), c);
 			return c;
 			
 		}
 		
-		//Pour Admin
-		public static Map<String, Admin> admins = memoire.getAdmin();
+		public List<Stock> afficherStock() {
+			return new ArrayList<Stock>(stock.values());
+		}
 		
-		public  Admin modifierMdp(Admin c){
+		public Stock afficherStockUnique(Long id){
+			Stock c = stock.get(id);
+			return c; 
+		}
+		
+		
+		public String supprimerStock(Long id){
+			stock.remove(id);
+			return " supprimrt avec succes";
+		}
+		
+		public  Stock modifierStock(Stock c){
 			
-			admins.put(c.getLogin(), c);
+			stock.put(c.getIdM(), c);
 			return c;
 		}
-		public List<Admin> afficher() {
-			return new ArrayList<Admin>(admins.values());
-		}
-		
+
 }

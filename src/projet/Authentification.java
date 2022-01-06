@@ -10,14 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
 /**
  * Servlet Filter implementation class Authentification
  */
-@WebFilter("/ws-rest/admin*")
+@WebFilter("/ws-rest/admin/*")
 public class Authentification implements Filter {
 
     /**
@@ -38,22 +36,15 @@ public class Authentification implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpReq = (HttpServletRequest) request;
-
-        HttpSession session = httpReq.getSession();
-        if (session.getAttribute("adminSession") !=null)
-        {
-            // sends request to next resource
-            chain.doFilter(request, response);
-
-        }
-        else
-        {
-
-            PrintWriter out = response.getWriter();
-            out.print(" only admin is allowed here");
-
-        }
+		String login = request.getParameter("login");
+		String pass = request.getParameter("pass");
+		if(memoire.getAdmin().containsKey(login) && pass.equals(memoire.getAdmin().get(login))){
+			chain.doFilter(request, response);
+		}
+		
+		PrintWriter out = response.getWriter();
+		out.print("Vous n'avez pas le droit");
+		
 	}
 
 	/**

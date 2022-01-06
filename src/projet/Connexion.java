@@ -1,6 +1,7 @@
 package projet;
 
-import java.util.List;
+
+import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -16,17 +17,14 @@ public class Connexion {
 
 	@GET 
 	@Produces(MediaType.TEXT_HTML)
-	public String connexionAdmin(@QueryParam("login") String login,
-			@QueryParam("pass") String pass) {
-		
-		
+	public String connexionAdmin(@QueryParam("login") String login,@QueryParam("pass") String pass) {
 		
 		if(!memoire.getAdmin().containsKey(login))
 			return "("+login+"): Cet identifiant n'existe pas.";
 		
 		
-		if ( pass.equals(memoire.getAdmin().get(login))) {
-			memoire.connecter(login);
+		if ( memoire.getAdmin().containsKey(login) && pass.equals(memoire.getAdmin().get(login))) {
+		//	memoire.connecter(login);
 			
 			return "Bienvenue "+login+", connexion avec succes";
 		} else {
@@ -35,21 +33,19 @@ public class Connexion {
 	}
 	
 	
-		
+	public static Map<String ,String> admins = memoire.getAdmin();
 	@PUT
 	@Path("modifierMdp")
-	public   Admin modifierCaissier(@QueryParam("login") String login,@QueryParam("pass") String pass,Admin dir){
-		dir.setLogin(login);
-		 return  ServiceDirecteur.modifierMdp(dir);
+	public   String modifierMdp(@QueryParam("login") String login,@QueryParam("pass") String pass,@QueryParam("newpass") String newpass){
+		if(memoire.getAdmin().containsKey(login) && pass.equals(memoire.getAdmin().get(login))){
+		
+				pass=newpass;
+			   admins.put(login,pass);
+				return "changer";
+		}
+		
+		return "non changer";
 		
 	}
 	
-	@GET
-	@Path("afficher")
-	public List<Admin> afficher(){
-		return ServiceDirecteur.afficher();
-	}
-	
-
-
 }
