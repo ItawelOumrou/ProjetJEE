@@ -2,7 +2,6 @@ package projet;
 
 import java.util.List;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,80 +11,41 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-@Path("/admin")
-public class AdminController {
-	
-	   static ServiceAdmin Serviceadmin = new ServiceAdmin();
-	
-	@POST
-	@Path("ajouterDirecteur")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Directeur ajouterDirecteur(Directeur c){
-		return Serviceadmin.ajouterDirecteur(c);
-	}
-	
-	@GET
-	@Path("afficherDirecteur")
-	@Produces(MediaType.APPLICATION_JSON)
-	public  List<Directeur> afficherDirecteur(){
-		return Serviceadmin.afficherDirecteur();
-	}
-	
-	@GET
-	@Path("afficherDirecteurUnique/{id}")
-	public   Directeur afficherDirecteurUnique(@PathParam("id") Long id){
-		return Serviceadmin.afficherDirecteurUnique(id);
-	}
-	
-	@PUT
-	@Path("modifierDirecteur/{id}")
-	public   Directeur modifierDirecteur(@PathParam("id") Long id,Directeur dir){
-		dir.setIdentifiant(id);
-		return Serviceadmin.modifierDirecteur(dir);
-	}
-	
+@Path("/directeur")
+public class DirecteurController {
 
-	
-	@DELETE
-	@Path("supprimerDirecteur/{id}")
-	public  String  supprimerDirecteur(@PathParam("id") Long id){
-		 Serviceadmin.supprimerDirecteur(id);
-		 return "suppression avec success";
-	}
-	
+	static ServiceDirecteur ServiceDirecteur = new ServiceDirecteur();
 	//Pour le caissier
 	
 	@POST
 	@Path("ajouterCaissier")
 	public Caissier ajouterCaissier(Caissier c){
-		return Serviceadmin.ajouterCaissier(c);
+		return ServiceDirecteur.ajouterCaissier(c);
 	}
 	
 	@GET
 	@Path("afficherCaissier")
 	public List<Caissier> afficherCaissier(){
-		return Serviceadmin.afficherCaissier();
+		return ServiceDirecteur.afficherCaissier();
 	}
 	
 	@GET
 	@Path("afficherCaissierUnique/{id}")
 	public Caissier afficherCaissierUnique(@PathParam("id") Long id){
-		return Serviceadmin.afficherCaissierUnique(id);
+		return ServiceDirecteur.afficherCaissierUnique(id);
 	}
 	
 	@PUT
 	@Path("modifierCaissier/{id}")
 	public   Caissier modifierCaissier(@PathParam("id") Long id,Caissier dir){
 		dir.setId(id);
-		return Serviceadmin.modifierCaissier(dir);
+		return ServiceDirecteur.modifierCaissier(dir);
 	}
 	
 	@DELETE
 	@Path("supprimerCaissier/{id}")
 	public String supprimerCaissier(@PathParam("id") Long id){
-		return Serviceadmin.supprimerCaissier(id);
+		return ServiceDirecteur.supprimerCaissier(id);
 	}
 
 	//pour le magasin
@@ -95,7 +55,7 @@ public class AdminController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Magasin ajouterMagasin(Magasin c){
 		if(memoire.getDirecteurs().containsKey(c.getIdD())==true )
-			return Serviceadmin.ajouterMagasin(c);
+			return ServiceDirecteur.ajouterMagasin(c);
 		return null;
 	}
 	
@@ -103,26 +63,26 @@ public class AdminController {
 	@GET
 	@Path("afficherMagasin")
 	public List<Magasin> afficherMagasin(){
-		return Serviceadmin.afficherMagasin();
+		return ServiceDirecteur.afficherMagasin();
 	}
 	
 	@GET
 	@Path("afficherMagasinUnique/{nom}")
 	public Magasin afficherMagasinUnique(@PathParam("nom") String nom){
-		return Serviceadmin.afficherMagisinUnique(nom);
+		return ServiceDirecteur.afficherMagisinUnique(nom);
 	}
 	
 	@PUT
 	@Path("modifierMagasin/{id}")
 	public   Magasin modifierMagasin(@PathParam("id") Long id,Magasin dir){
 		dir.setId(id);
-		return Serviceadmin.modifierMagasin(dir);
+		return ServiceDirecteur.modifierMagasin(dir);
 	}
 	
 	@DELETE
 	@Path("supprimerMagasin/{id}")
 	public String supprimerMagasin(@PathParam("id") Long id){
-		return Serviceadmin.supprimerMagasin(id);
+		return ServiceDirecteur.supprimerMagasin(id);
 	}
 	
 	//pour le produit
@@ -131,33 +91,33 @@ public class AdminController {
 		@Path("ajouterProduit")
 		@Produces(MediaType.APPLICATION_JSON)
 		public Produit ajouterProduit(Produit c){
-			return Serviceadmin.ajouterProduit(c);
+			return ServiceDirecteur.ajouterProduit(c);
 		}
 		
 		@GET
 		@Path("listProduit")
 		public List<Produit> afficherProduit(){
-			return Serviceadmin.afficherProduit();
+			return ServiceDirecteur.afficherProduit();
 		}
 		
 		@GET
 		@Path("afficherProduitUnique/{id}")
 		public Produit afficherProduitUnique(@PathParam("id") Long id){
-			return Serviceadmin.afficherProduitUnique(id);
+			return ServiceDirecteur.afficherProduitUnique(id);
 		}
 		
 		@PUT
 		@Path("modifierProduit/{id}")
 		public   Produit modifierProduit(@PathParam("id") Long id,Produit dir){
 			dir.setIdProduit(id);
-			return Serviceadmin.modifierProduit(dir);
+			return ServiceDirecteur.modifierProduit(dir);
 		}
 		
 		
 		@DELETE
 		@Path("supprimerProduit/{id}")
 		public String supprimerProduit(@PathParam("id") Long id){
-			return Serviceadmin.supprimerProduit(id);
+			return ServiceDirecteur.supprimerProduit(id);
 		}
 		
 		//pour stock
@@ -166,7 +126,7 @@ public class AdminController {
 		@Produces(MediaType.APPLICATION_JSON)
 		public String ajouterStock(Stock c){
 			if(memoire.getMagasins().containsKey(c.getIdM())==true && memoire.getProduits().containsKey(c.getIdP())==true){
-				Serviceadmin.ajouterStock(c);
+				ServiceDirecteur.ajouterStock(c);
 				return "ajouter avec succes";
 			}
 			return "erreur";
@@ -176,26 +136,25 @@ public class AdminController {
 		@Path("afficherStock")
 		@Produces(MediaType.APPLICATION_JSON)
 		public  List<Stock> afficherStock(){
-			return Serviceadmin.afficherStock();
+			return ServiceDirecteur.afficherStock();
 		}
 		
 		@GET
 		@Path("afficherStockUnique/{id}")
 		public Stock afficherStockUnique(@PathParam("id") Long id){
-			return Serviceadmin.afficherStockUnique(id);
+			return ServiceDirecteur.afficherStockUnique(id);
 		}
 		
 		@PUT
 		@Path("modifierStock/{id}")
 		public   Stock modifierStock(@PathParam("id") Long id,Stock dir){
 			dir.setIdM(id);
-			return Serviceadmin.modifierStock(dir);
+			return ServiceDirecteur.modifierStock(dir);
 		}
 		
 		@DELETE
 		@Path("supprimerStock/{id}")
 		public String supprimerStock(@PathParam("id") Long id){
-			return Serviceadmin.supprimerStock(id);
+			return ServiceDirecteur.supprimerStock(id);
 		}
 }
-

@@ -27,7 +27,7 @@ class memoire {
 	//Pour le  magasin
 		private static Map<Long, Magasin> magasins = new HashMap<>();
 		public static Map<Long, Magasin> getMagasins(){
-			magasins.put((long) 1, new Magasin((long) 1,"Epicerie",(long) 1,null));
+			magasins.put((long) 1, new Magasin((long) 1,"Epicerie",(long) 1,(long) 4)); 
 			magasins.put((long) 2, new Magasin((long) 2,"Epicerie 3",(long) 1,null));
 			magasins.put((long) 3, new Magasin((long) 3,"Epicerie 3",(long) 2,null));
 			magasins.put((long) 4, new Magasin((long) 4,"Epicerie 4",(long) 3,null));
