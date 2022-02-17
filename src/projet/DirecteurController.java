@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/directeur")
+
 public class DirecteurController {
 
 	static ServiceDirecteur ServiceDirecteur = new ServiceDirecteur();

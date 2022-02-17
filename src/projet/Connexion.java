@@ -1,7 +1,7 @@
 package projet;
 
-
 import java.util.Map;
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -10,42 +10,48 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/connecter")
+@Path("/")
 @Produces("application/json")
 public class Connexion {
-	static ServiceDirecteur ServiceDirecteur = new ServiceDirecteur();
+	
+	static Map<String, Admin> admins = memoire.getAdmin();
 
-	@GET 
+	@GET
+	@Path("connecter")
 	@Produces(MediaType.TEXT_HTML)
-	public String connexionAdmin(@QueryParam("login") String login,@QueryParam("pass") String pass) {
-		
-		if(!memoire.getAdmin().containsKey(login))
-			return "("+login+"): Cet identifiant n'existe pas.";
-		
-		
-		if ( memoire.getAdmin().containsKey(login) && pass.equals(memoire.getAdmin().get(login))) {
-		//	memoire.connecter(login);
-			
-			return "Bienvenue "+login+", connexion avec succes";
-		} else {
-			return "Erreur de connexion. Mot de passe incorect";
+	public String getinfos(@QueryParam("login") String login, @QueryParam("pass") String pass) {
+		Admin ad = admins.get(login);
+		if(ad==null){
+			return "Admin n'existe pas !!";
 		}
+		else if(!pass.equals(ad.getPass())){
+					return "Mot de passe incorrecte !!";
+				}
+		
+		return "Bienvenu Admin !!!";
 	}
 	
 	
-	public static Map<String ,String> admins = memoire.getAdmin();
 	@PUT
-	@Path("modifierMdp")
-	public   String modifierMdp(@QueryParam("login") String login,@QueryParam("pass") String pass,@QueryParam("newpass") String newpass){
-		if(memoire.getAdmin().containsKey(login) && pass.equals(memoire.getAdmin().get(login))){
-		
-				pass=newpass;
-			   admins.put(login,pass);
-				return "changer";
+	@Path("/modifier")
+	@Produces(MediaType.TEXT_HTML)
+	// Login avec nouveau password
+	public String modifierPass(@QueryParam("login") String login, @QueryParam("pass") String pass,
+			@QueryParam("Npass") String Npass) {
+		Admin adm = admins.get(login);
+		if(adm==null){
+			return "Admin n'existe pas !!";
 		}
-		
-		return "non changer";
-		
+		else if(!Npass.equals(adm.getPass())){
+		return "Mot de passe incorrecte !!";
+		}
+		else{
+				adm.setPass(Npass);
+				admins.put(login, adm);
+				return "Mot de passe est modifié avec succès";
+
+			}
 	}
+
 	
 }

@@ -43,32 +43,15 @@ class memoire {
 					produits.put((long) 4, new Produit((long) 4,"Oreo","123o4"));
 					return produits;
 				}
+
+				//Admin
+				private static Map<String , Admin> admins = new HashMap<>();
 				
-				
-	//pour admin
-private static Map<String , String> admins = new HashMap<>();
-	
-	public static Map<String ,String> getAdmin(){
-		admins.put("admin", "admin");
-		return admins;
-		
-	}
-private static Map<String, String> connectionState = new HashMap<>();
-	
-	public static Map<String,String> getConState(){
-		return connectionState;
-	}
-	
-	public static void connecter(String login){
-		connectionState.put(login,"admin");
-	}
-	public static boolean isConnected( String login ){
-		if(connectionState.get(login) == null) return false;
-		if(connectionState.get(login).equals("admin"))
-			return true;
-		else
-			return false;
-	}
+				public static Map<String ,Admin> getAdmin(){
+					admins.put("admin",new Admin("admin", "admin","Sidi"));
+					return admins;
+					
+				}
 	
 	//pour Stock
 	private static Map<Long, Stock> stock = new HashMap<>();
