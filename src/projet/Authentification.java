@@ -49,14 +49,8 @@ public class Authentification implements Filter {
 			chain.doFilter(request, response);
 		}
 		PrintWriter out = response.getWriter();
-			out.print("Voun n'avez pas le droit ");
+			out.print("ADMIN Voun n'avez pas le droit");
 				
-		
-				
-		 
-		
-		
-		//out.print("Vous n'avez pas le droit");
 		
 	}
 

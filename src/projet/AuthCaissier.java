@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class AuthCaissier
  */
-@WebFilter("/ws-rest/caissier/*")
+@WebFilter("/ws-rest/caissie r/*")
 public class AuthCaissier implements Filter {
 
     /**

@@ -1,6 +1,7 @@
 package projet;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -94,9 +95,30 @@ public class AdminController {
 	@Path("ajouterMagasin")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Magasin ajouterMagasin(Magasin c){
-		if(memoire.getDirecteurs().containsKey(c.getIdD())==true )
+		//if(memoire.getDirecteurs().containsKey(c.getIdD())==true )
 			return Serviceadmin.ajouterMagasin(c);
-		return null;
+		//return null;
+	}
+	
+	public static Map<Long, Magasin> magasins = memoire.getMagasins();
+	@PUT
+	@Path("affecterDirecteur/{idMagasin}/{idDirecteur}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String affecterDirecteur(@PathParam("idMagasin") Long idMagasin,@PathParam("idDirecteur") Long idDirecteur){
+		Magasin mg = magasins.get(idMagasin);
+		
+		if(magasins.containsKey(idMagasin)==true ){
+			if(memoire.getDirecteurs().containsKey(idDirecteur)==true ){
+				if(!(mg.getIdD() == idDirecteur)){
+					mg.setIdD(idDirecteur);
+					return "Success";
+				}
+				return "Id Directeur est deja existe";
+			}
+			return "Id Directeur incorrect";	
+		}
+			
+		return "Id magasin incorrect";
 	}
 	
 	
@@ -112,11 +134,21 @@ public class AdminController {
 		return Serviceadmin.afficherMagisinUnique(nom);
 	}
 	
+	public static Map<Long, Directeur> directeurs = memoire.getDirecteurs();
+	
 	@PUT
 	@Path("modifierMagasin/{id}")
-	public   Magasin modifierMagasin(@PathParam("id") Long id,Magasin dir){
+	public   String modifierMagasin(@PathParam("id") Long id,Magasin dir){
 		dir.setId(id);
-		return Serviceadmin.modifierMagasin(dir);
+		
+			if(memoire.getDirecteurs().containsKey(dir.getIdD())==true ){
+				
+					Serviceadmin.modifierMagasin(dir);
+					return "Success";
+					
+			}
+			return "Id Directeur incorrect";
+		
 	}
 	
 	@DELETE

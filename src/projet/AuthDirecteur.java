@@ -12,10 +12,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter("/ws-rest/dire cteur/*")
-public class AuthDirecteur implements Filter{
+@WebFilter("/ws-rest/directeur/*")
+public class AuthDirecteur implements Filter {
 
-	    /**
+		/**
 	     * Default constructor. 
 	     */
 	    public AuthDirecteur() {
@@ -38,14 +38,17 @@ public class AuthDirecteur implements Filter{
 			String idD = request.getParameter("idD");
 			String idM = request.getParameter("idM");
 			
-			Magasin dr = magasins.get(idM);
+			Magasin dr = magasins.get(Long.parseLong(idM));
 			
-			if(idD.equals(dr.getIdD()) && idM.equals(dr.getId())){
+			 if(dr.getId().equals(Long.parseLong(idM)) && dr.getIdD().equals(Long.parseLong(idD)) ){
 				chain.doFilter(request, response);
 			}
+			 else{
+				 PrintWriter out = response.getWriter();
+					out.print("No");
+			 }
 			
-			PrintWriter out = response.getWriter();
-			out.print(" Vous n'avez pas le droit");
+			
 			
 		}
 

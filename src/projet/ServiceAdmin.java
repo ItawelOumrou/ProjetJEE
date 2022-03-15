@@ -110,6 +110,8 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 		
 		public  Magasin ajouterMagasin(Magasin c){
 			c.setId((long) (magasins.size()+1));
+			c.setIdD(null);
+			c.setIdC(null);
 			magasins.put(c.getId(), c);
 			return c;
 			
@@ -135,6 +137,7 @@ public static Map<Long, Caissier> caissiers = memoire.getCassiers();
 			magasins.put(c.getId(), c);
 			return c;
 		}
+		
 		
 		
 		//pour stock

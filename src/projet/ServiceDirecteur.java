@@ -6,40 +6,6 @@ import java.util.Map;
 
 public class ServiceDirecteur {
 	
-
-	
-	//Pour le caissier
-public static Map<Long, Caissier> caissiers = memoire.getCassiers();
-	
-	public Caissier ajouterCaissier(Caissier d){
-		d.setId((long) (caissiers.size()+1));
-		caissiers.put(d.getId(), d);
-		return d;
-	}
-	
-	public List<Caissier> afficherCaissier() {
-		return new ArrayList<Caissier>(caissiers.values());
-	}
-	
-	public Caissier afficherCaissierUnique(Long id){
-		Caissier c = caissiers.get(id);
-		return c; 
-	}
-	
-	
-	public String supprimerCaissier(Long id){
-		Caissier d = caissiers.remove(id);
-		return d.getId()+" est bien supprimer";
-	}
-	
-	public  Caissier modifierCaissier(Caissier c){
-		if(c.getId() <= 0)
-			return null;
-		
-		caissiers.put(c.getId(), c);
-		return c;
-	}
-	
 	//pour le produit
 	public static Map<Long, Produit> produits = memoire.getProduits();
 	
@@ -127,7 +93,7 @@ public static Map<Long, Stock> stock = memoire.getStocks();
 		
 		public String supprimerStock(Long id){
 			stock.remove(id);
-			return " supprimrt avec succes";
+			return " suppression avec succes";
 		}
 		
 		public  Stock modifierStock(Stock c){

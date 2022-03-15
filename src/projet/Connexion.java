@@ -42,8 +42,8 @@ public class Connexion {
 		if(adm==null){
 			return "Admin n'existe pas !!";
 		}
-		else if(!Npass.equals(adm.getPass())){
-		return "Mot de passe incorrecte !!";
+		else if(!pass.equals(adm.getPass())){
+		return "Mot de passe est  incorrecte !!";
 		}
 		else{
 				adm.setPass(Npass);

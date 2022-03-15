@@ -16,38 +16,7 @@ import javax.ws.rs.core.MediaType;
 public class DirecteurController {
 
 	static ServiceDirecteur ServiceDirecteur = new ServiceDirecteur();
-	//Pour le caissier
 	
-	@POST
-	@Path("ajouterCaissier")
-	public Caissier ajouterCaissier(Caissier c){
-		return ServiceDirecteur.ajouterCaissier(c);
-	}
-	
-	@GET
-	@Path("afficherCaissier")
-	public List<Caissier> afficherCaissier(){
-		return ServiceDirecteur.afficherCaissier();
-	}
-	
-	@GET
-	@Path("afficherCaissierUnique/{id}")
-	public Caissier afficherCaissierUnique(@PathParam("id") Long id){
-		return ServiceDirecteur.afficherCaissierUnique(id);
-	}
-	
-	@PUT
-	@Path("modifierCaissier/{id}")
-	public   Caissier modifierCaissier(@PathParam("id") Long id,Caissier dir){
-		dir.setId(id);
-		return ServiceDirecteur.modifierCaissier(dir);
-	}
-	
-	@DELETE
-	@Path("supprimerCaissier/{id}")
-	public String supprimerCaissier(@PathParam("id") Long id){
-		return ServiceDirecteur.supprimerCaissier(id);
-	}
 
 	//pour le magasin
 	
@@ -64,6 +33,7 @@ public class DirecteurController {
 	@GET
 	@Path("afficherMagasin")
 	public List<Magasin> afficherMagasin(){
+		
 		return ServiceDirecteur.afficherMagasin();
 	}
 	
